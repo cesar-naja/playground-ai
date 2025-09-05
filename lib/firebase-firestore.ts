@@ -150,9 +150,10 @@ export const getDocuments = async <T extends FirestoreDocument>(
     const documents: T[] = [];
     
     querySnapshot.forEach((doc) => {
+      const data = doc.data();
       documents.push({
         id: doc.id,
-        ...doc.data()
+        ...data
       } as T);
     });
     
@@ -205,9 +206,10 @@ export const subscribeToDocument = <T extends FirestoreDocument>(
   
   return onSnapshot(docRef, (doc) => {
     if (doc.exists()) {
+      const data = doc.data();
       callback({
         id: doc.id,
-        ...doc.data()
+        ...data
       } as T);
     } else {
       callback(null);
@@ -236,9 +238,10 @@ export const subscribeToCollection = <T extends FirestoreDocument>(
   return onSnapshot(q as any, (querySnapshot) => {
     const documents: T[] = [];
     querySnapshot.forEach((doc) => {
+      const data = doc.data();
       documents.push({
         id: doc.id,
-        ...doc.data()
+        ...data
       } as T);
     });
     callback(documents);
