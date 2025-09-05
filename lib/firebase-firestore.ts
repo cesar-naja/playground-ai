@@ -204,7 +204,7 @@ export const subscribeToDocument = <T extends FirestoreDocument>(
 ): (() => void) => {
   const docRef = doc(db, collectionName, docId);
   
-  return onSnapshot(docRef, (doc) => {
+  return onSnapshot(docRef, (doc: any) => {
     if (doc.exists()) {
       const data = doc.data();
       callback({
@@ -235,7 +235,7 @@ export const subscribeToCollection = <T extends FirestoreDocument>(
     });
   }
   
-  return onSnapshot(q as any, (querySnapshot) => {
+  return onSnapshot(q as any, (querySnapshot: any) => {
     const documents: T[] = [];
     querySnapshot.forEach((doc) => {
       const data = doc.data();
