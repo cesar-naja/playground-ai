@@ -153,7 +153,7 @@ export const getDocuments = async <T extends FirestoreDocument>(
       const data = doc.data();
       documents.push({
         id: doc.id,
-        ...data
+        ...(data as Record<string, any>)
       } as T);
     });
     
@@ -209,7 +209,7 @@ export const subscribeToDocument = <T extends FirestoreDocument>(
       const data = doc.data();
       callback({
         id: doc.id,
-        ...data
+        ...(data as Record<string, any>)
       } as T);
     } else {
       callback(null);
@@ -241,7 +241,7 @@ export const subscribeToCollection = <T extends FirestoreDocument>(
       const data = doc.data();
       documents.push({
         id: doc.id,
-        ...data
+        ...(data as Record<string, any>)
       } as T);
     });
     callback(documents);
