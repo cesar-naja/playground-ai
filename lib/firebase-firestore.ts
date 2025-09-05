@@ -149,7 +149,7 @@ export const getDocuments = async <T extends FirestoreDocument>(
     const querySnapshot = await getDocs(q as any);
     const documents: T[] = [];
     
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
       const data = doc.data();
       documents.push({
         id: doc.id,
@@ -237,7 +237,7 @@ export const subscribeToCollection = <T extends FirestoreDocument>(
   
   return onSnapshot(q as any, (querySnapshot: any) => {
     const documents: T[] = [];
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
       const data = doc.data();
       documents.push({
         id: doc.id,
