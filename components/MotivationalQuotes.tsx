@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { generateMotivationalQuote, MotivationalQuote } from '@/lib/openai';
+interface MotivationalQuote {
+  quote: string;
+  author: string;
+  theme: string;
+}
 import { RefreshCw, Quote } from 'lucide-react';
 
 interface QuoteWithImage extends MotivationalQuote {
@@ -19,7 +23,11 @@ export default function MotivationalQuotes() {
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for slower fade out
-      const newQuote = await generateMotivationalQuote();
+      const response = await fetch('/api/motivational-quote');
+      if (!response.ok) {
+        throw new Error('Failed to fetch quote');
+      }
+      const newQuote = await response.json();
       setCurrentQuote(newQuote);
       setFadeClass('opacity-100');
     } catch (error) {

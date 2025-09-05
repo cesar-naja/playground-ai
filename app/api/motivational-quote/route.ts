@@ -1,14 +1,9 @@
+import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || process.env.OPENAI_API_KEY || '',
-  dangerouslyAllowBrowser: true
+  apiKey: process.env.OPENAI_API_KEY, // Server-side, no NEXT_PUBLIC_ needed
 });
-
-// Debug: Check if API key is loaded
-console.log('OpenAI API Key loaded:', process.env.NEXT_PUBLIC_OPENAI_API_KEY ? 'Yes' : 'No');
-console.log('API Key first 10 chars:', process.env.NEXT_PUBLIC_OPENAI_API_KEY?.substring(0, 10) || 'undefined');
-console.log('All NEXT_PUBLIC env vars:', Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC')));
 
 export interface MotivationalQuote {
   quote: string;
@@ -28,8 +23,11 @@ const motivationalImages = [
   'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&h=600&fit=crop&crop=entropy&auto=format&q=80', // Field horizon
 ];
 
-export const generateMotivationalQuote = async (): Promise<MotivationalQuote & { image: string }> => {
+export async function GET() {
   try {
+    console.log('API Key available:', !!process.env.OPENAI_API_KEY);
+    console.log('API Key first 10 chars:', process.env.OPENAI_API_KEY?.substring(0, 10) || 'undefined');
+
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -51,13 +49,14 @@ export const generateMotivationalQuote = async (): Promise<MotivationalQuote & {
       throw new Error('No response from OpenAI');
     }
 
+    console.log('Original OpenAI response:', response);
+
     // Clean the response to extract JSON from markdown code blocks
     const cleanResponse = response
       .replace(/```json\s*/, '') // Remove opening ```json
       .replace(/```\s*$/, '')    // Remove closing ```
       .trim();
 
-    console.log('Original OpenAI response:', response);
     console.log('Cleaned response for JSON parsing:', cleanResponse);
 
     let quoteData: MotivationalQuote;
@@ -68,12 +67,13 @@ export const generateMotivationalQuote = async (): Promise<MotivationalQuote & {
       console.error('Failed to parse response:', cleanResponse);
       throw new Error('Invalid JSON response from OpenAI');
     }
+
     const randomImage = motivationalImages[Math.floor(Math.random() * motivationalImages.length)];
 
-    return {
+    return NextResponse.json({
       ...quoteData,
       image: randomImage
-    };
+    });
   } catch (error) {
     console.error('Error generating motivational quote:', error);
     
@@ -111,7 +111,7 @@ export const generateMotivationalQuote = async (): Promise<MotivationalQuote & {
       }
     ];
 
-    return fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
+    const fallbackQuote = fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
+    return NextResponse.json(fallbackQuote);
   }
-};
-
+}
