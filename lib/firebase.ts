@@ -18,22 +18,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (with check to prevent re-initialization)
-let app: FirebaseApp;
-let analytics: Analytics | null = null;
-let auth: Auth;
-let db: Firestore;
-let storage: FirebaseStorage;
-
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApps()[0];
-}
+const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
 
 // Initialize services
-auth = getAuth(app);
-db = getFirestore(app);
-storage = getStorage(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+let analytics: Analytics | null = null;
 
 // Initialize analytics only on client side
 if (typeof window !== 'undefined') {

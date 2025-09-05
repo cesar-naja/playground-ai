@@ -37,7 +37,7 @@ export default function Home() {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-3">Welcome back!</h2>
               <p className="text-gray-600 mb-6">
-                You're successfully authenticated and ready to explore all features
+                You&apos;re successfully authenticated and ready to explore all features
               </p>
               <Link 
                 href="/videos"
@@ -152,7 +152,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">Trending Content</h3>
                   <p className="text-gray-700 font-medium leading-relaxed">
-                    Discover what's popular with our trending videos section
+                    Discover what&apos;s popular with our trending videos section
                   </p>
                 </div>
               </div>

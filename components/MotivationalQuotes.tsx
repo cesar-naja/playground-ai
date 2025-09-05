@@ -87,7 +87,7 @@ export default function MotivationalQuotes() {
           {/* Quote Text */}
           <blockquote className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
             <span className="bg-gradient-to-r from-blue-200 via-white to-purple-200 bg-clip-text text-transparent">
-              "{currentQuote.quote}"
+              &ldquo;{currentQuote.quote}&rdquo;
             </span>
           </blockquote>
 

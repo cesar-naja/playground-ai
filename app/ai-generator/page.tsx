@@ -14,10 +14,7 @@ import {
   Grid3X3,
   Palette,
   Zap,
-  Star,
-  Trash2,
   RefreshCw,
-  Filter,
   SortDesc,
   Eye
 } from 'lucide-react';
@@ -52,8 +49,7 @@ export default function AIGeneratorPage() {
   const [style, setStyle] = useState<ImageStyle>('vivid');
   const [quality, setQuality] = useState<ImageQuality>('hd');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedImages, setGeneratedImages] = useState<string[]>([]);
-  const [currentPrompt, setCurrentPrompt] = useState('');
+  // Removed unused state variables for cleaner code
   
   // UI states
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -115,8 +111,6 @@ export default function AIGeneratorPage() {
     if (!promptToUse.trim()) return;
 
     setIsGenerating(true);
-    setGeneratedImages([]);
-    setCurrentPrompt(promptToUse);
 
     try {
       const request: ImageGenerationRequest = {
@@ -130,8 +124,6 @@ export default function AIGeneratorPage() {
       const response = await generateImages(request);
       const imageUrl = response.images[0]?.url;
       if (imageUrl) {
-        setGeneratedImages([imageUrl]);
-        
         // Close loading modal and open image modal immediately
         setIsGenerating(false);
         setModalImage({
@@ -143,8 +135,9 @@ export default function AIGeneratorPage() {
           isGenerated: true
         });
       }
-    } catch (error: any) {
-      alert('Failed to generate image: ' + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      alert('Failed to generate image: ' + errorMessage);
       setIsGenerating(false);
     }
   };
@@ -178,11 +171,11 @@ export default function AIGeneratorPage() {
       // Show success message (optional)
       // You could add a toast notification here instead of alert
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Save image error:', error);
       
       // Show user-friendly error message
-      const errorMessage = error.message || 'An unexpected error occurred while saving the image.';
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred while saving the image.';
       alert('Save Failed: ' + errorMessage);
     } finally {
       setSavingImage(null);
@@ -234,8 +227,9 @@ export default function AIGeneratorPage() {
     try {
       await toggleImageFavorite(image.id, !image.isFavorite);
       await loadSavedImages();
-    } catch (error: any) {
-      alert('Failed to update favorite: ' + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      alert('Failed to update favorite: ' + errorMessage);
     }
   };
 
@@ -246,8 +240,9 @@ export default function AIGeneratorPage() {
     try {
       await deleteSavedImage(image);
       await loadSavedImages();
-    } catch (error: any) {
-      alert('Failed to delete image: ' + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      alert('Failed to delete image: ' + errorMessage);
     }
   };
 
