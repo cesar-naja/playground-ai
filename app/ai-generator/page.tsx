@@ -332,13 +332,13 @@ export default function AIGeneratorPage() {
                       onChange={(e) => setPrompt(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && !isGenerating && handleGenerate()}
                       placeholder="Describe the image you want to create... (e.g., 'A magical forest with glowing mushrooms')"
-                      className="w-full pl-16 pr-24 py-7 rounded-3xl border-2 border-gray-300 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-300 text-lg font-medium shadow-lg bg-white text-gray-900 placeholder-gray-500"
+                      className="w-full pl-16 pr-32 sm:pr-24 py-7 rounded-3xl border-2 border-gray-300 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-300 text-lg font-medium shadow-lg bg-white text-gray-900 placeholder-gray-400"
                       disabled={isGenerating}
                     />
                     <button
                       onClick={() => handleGenerate()}
                       disabled={isGenerating || !prompt.trim()}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105"
+                      className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-2xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 text-sm sm:text-base"
                     >
                       {isGenerating ? (
                         <Loader2 className="w-5 h-5 animate-spin" />
@@ -375,7 +375,7 @@ export default function AIGeneratorPage() {
                           <select
                             value={size}
                             onChange={(e) => setSize(e.target.value as ImageSize)}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
                           >
                             {imageSizeOptions.map(option => (
                               <option key={option.value} value={option.value}>
@@ -394,7 +394,7 @@ export default function AIGeneratorPage() {
                           <select
                             value={style}
                             onChange={(e) => setStyle(e.target.value as ImageStyle)}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
                           >
                             {styleOptions.map(option => (
                               <option key={option.value} value={option.value}>
@@ -413,7 +413,7 @@ export default function AIGeneratorPage() {
                           <select
                             value={quality}
                             onChange={(e) => setQuality(e.target.value as ImageQuality)}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 bg-white"
                           >
                             {qualityOptions.map(option => (
                               <option key={option.value} value={option.value}>
