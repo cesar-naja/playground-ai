@@ -1,8 +1,20 @@
+/* Custom font for the logo */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+/* Custom logo styling */
+.logo-text {
+  font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
 @theme inline {
