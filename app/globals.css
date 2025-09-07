@@ -1,10 +1,47 @@
 /* Custom font for the logo */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap');
 @import "tailwindcss";
 
+/* Dark Theme Variables - Default */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core Colors */
+  --bg: #0b0f17;
+  --surface: #0f172a;
+  --card: #111827;
+  --border: rgba(148, 163, 184, 0.18);
+  --muted: #94a3b8;
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent: #22d3ee;
+  --accent-foreground: #06141f;
+  --ring: var(--accent);
+  
+  /* Status Colors */
+  --success: #10b981;
+  --success-foreground: #064e3b;
+  --warning: #f59e0b;
+  --warning-foreground: #451a03;
+  --error: #ef4444;
+  --error-foreground: #7f1d1d;
+  
+  /* Legacy support */
+  --background: var(--bg);
+  --foreground: var(--text);
+}
+
+/* Light theme override (optional - keeping dark as default) */
+.light {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --card: #ffffff;
+  --border: rgba(148, 163, 184, 0.2);
+  --muted: #64748b;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --accent: #0891b2;
+  --accent-foreground: #ffffff;
+  --ring: var(--accent);
 }
 
 /* Custom logo styling */
@@ -17,22 +54,136 @@
   line-height: 1;
 }
 
+/* Tailwind v4 Theme Configuration */
 @theme inline {
+  /* Colors */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  
+  /* Legacy support */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Typography */
+  --font-sans: 'Inter', var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'SF Mono', Consolas, monospace;
+  
+  /* Spacing Scale (8pt grid) */
+  --spacing-0: 0;
+  --spacing-1: 0.125rem; /* 2px */
+  --spacing-2: 0.25rem;  /* 4px */
+  --spacing-3: 0.375rem; /* 6px */
+  --spacing-4: 0.5rem;   /* 8px */
+  --spacing-6: 0.75rem;  /* 12px */
+  --spacing-8: 1rem;     /* 16px */
+  --spacing-12: 1.5rem;  /* 24px */
+  --spacing-16: 2rem;    /* 32px */
+  --spacing-20: 2.5rem;  /* 40px */
+  --spacing-24: 3rem;    /* 48px */
+  --spacing-32: 4rem;    /* 64px */
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  
+  /* Shadows */
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.25);
+  --shadow-subtle: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset;
+  --shadow-focus: 0 0 0 2px var(--ring);
+  
+  /* Transitions */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Styles */
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus States - WCAG AA Compliant */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-md);
+}
+
+/* Links */
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

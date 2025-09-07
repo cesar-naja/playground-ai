@@ -54,8 +54,8 @@ export default function MotivationalQuotes() {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 min-h-[60vh] flex items-center justify-center">
         <div className="max-w-7xl mx-auto text-center">
           <div className="animate-pulse">
-            <div className="h-8 bg-gradient-to-r from-blue-200 to-purple-200 rounded-lg mb-4 max-w-2xl mx-auto"></div>
-            <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg max-w-md mx-auto"></div>
+            <div className="h-8 bg-gradient-to-r from-accent/30 to-accent/50 rounded-lg mb-4 max-w-2xl mx-auto"></div>
+            <div className="h-6 bg-gradient-to-r from-muted/30 to-muted/50 rounded-lg max-w-md mx-auto"></div>
           </div>
         </div>
       </section>
@@ -79,20 +79,20 @@ export default function MotivationalQuotes() {
         <div className={`transition-all duration-[1500ms] ease-in-out transform ${fadeClass} ${fadeClass === 'opacity-100' ? 'translate-y-0' : 'translate-y-4'}`}>
           {/* Quote Icon */}
           <div className="flex justify-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
+            <div className="w-20 h-20 bg-gradient-to-r from-accent/20 to-accent/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
               <Quote className="w-10 h-10 text-white" />
             </div>
           </div>
 
           {/* Quote Text */}
           <blockquote className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-blue-200 via-white to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-accent/80 via-white to-accent/60 bg-clip-text text-transparent">
               &ldquo;{currentQuote.quote}&rdquo;
             </span>
           </blockquote>
 
           {/* Author */}
-          <p className="text-xl md:text-2xl text-blue-100 mb-4 font-medium">
+          <p className="text-xl md:text-2xl text-accent/90 mb-4 font-medium">
             — {currentQuote.author}
           </p>
 
@@ -108,9 +108,9 @@ export default function MotivationalQuotes() {
             <button
               onClick={fetchNewQuote}
               disabled={isLoading}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed group"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-normal font-semibold disabled:opacity-50 disabled:cursor-not-allowed group"
             >
-              <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-500'}`} />
+              <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-slow'}`} />
               {isLoading ? 'Generating...' : 'New Quote'}
             </button>
           </div>
@@ -119,16 +119,16 @@ export default function MotivationalQuotes() {
         {/* Auto-refresh Indicator */}
         <div className="mt-8">
           <div className="flex justify-center items-center gap-2 text-white/60 text-sm">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+            <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span>Auto-refreshing every 8 seconds</span>
           </div>
         </div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl" />
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-xl" />
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-full blur-lg" />
+      <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-to-r from-accent/10 to-accent/20 rounded-full blur-xl" />
+      <div className="absolute bottom-10 right-10 w-32 h-32 bg-gradient-to-r from-accent/10 to-accent/30 rounded-full blur-xl" />
+      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-success/10 to-warning/10 rounded-full blur-lg" />
     </section>
   );
 }

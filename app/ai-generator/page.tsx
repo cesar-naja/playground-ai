@@ -248,37 +248,37 @@ export default function AIGeneratorPage() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-lg text-gray-600">Loading...</p>
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-accent" />
+          <p className="text-lg text-text-muted">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold text-text mb-4 bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
             AI Image Generator
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-text-muted max-w-2xl mx-auto">
             Create stunning images with AI. Describe what you want and watch it come to life.
           </p>
         </div>
 
         <SignedOut>
-          <div className="max-w-md mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-            <Wand2 className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Sign In to Generate Images</h2>
-            <p className="text-gray-600 mb-6">
+          <div className="max-w-md mx-auto bg-card/80 backdrop-blur-sm rounded-2xl shadow-card border border-border p-8 text-center">
+            <Wand2 className="w-16 h-16 text-accent mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-text mb-4">Sign In to Generate Images</h2>
+            <p className="text-text-muted mb-6">
               Create an account to start generating amazing AI images and save them to your gallery.
             </p>
             <SignInButton>
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-semibold">
+              <button className="bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-normal font-semibold">
                 Get Started
               </button>
             </SignInButton>
