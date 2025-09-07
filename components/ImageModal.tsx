@@ -150,28 +150,28 @@ export default function ImageModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-hidden shadow-2xl">
+      <div className="bg-card rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-hidden shadow-card">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-text">
               {isGenerated ? generateTitle(prompt) : savedImage?.prompt ? generateTitle(savedImage.prompt) : 'Generated Image'}
             </h2>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-text-muted mt-1">
               {isGenerated ? 'Generated just now' : savedImage ? formatDate(savedImage.createdAt.toDate()) : ''}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+            className="p-2 hover:bg-surface rounded-full transition-colors duration-fast"
           >
-            <X className="w-6 h-6 text-gray-600" />
+            <X className="w-6 h-6 text-text-muted" />
           </button>
         </div>
 
         <div className="flex flex-col lg:flex-row max-h-[calc(90vh-80px)]">
           {/* Image Section */}
-          <div className="flex-1 bg-gray-50 flex items-center justify-center p-6">
+          <div className="flex-1 bg-surface flex items-center justify-center p-6">
             <div className="relative max-w-full max-h-full">
               <img
                 src={savedImage?.storageUrl || imageUrl}

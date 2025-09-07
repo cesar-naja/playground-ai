@@ -288,13 +288,13 @@ export default function AIGeneratorPage() {
         <SignedIn>
           {/* Navigation Pills */}
           <div className="flex justify-center mb-8">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-1 shadow-lg border border-gray-200">
+            <div className="bg-card/90 backdrop-blur-sm rounded-2xl p-1 shadow-card border border-border">
               <button
                 onClick={() => setActiveTab('generate')}
                 className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
                   activeTab === 'generate'
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
-                    : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                    ? 'bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-card scale-105'
+                    : 'text-text-muted hover:text-accent hover:bg-accent/10'
                 }`}
               >
                 <Wand2 className="w-5 h-5" />
@@ -304,8 +304,8 @@ export default function AIGeneratorPage() {
                 onClick={() => setActiveTab('gallery')}
                 className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
                   activeTab === 'gallery'
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
-                    : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                    ? 'bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-card scale-105'
+                    : 'text-text-muted hover:text-accent hover:bg-accent/10'
                 }`}
               >
                 <ImageIcon className="w-5 h-5" />

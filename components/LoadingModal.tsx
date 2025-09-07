@@ -59,12 +59,12 @@ export default function LoadingModal({
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 w-full max-w-md mx-4 overflow-hidden">
+      <div className="bg-card rounded-3xl shadow-card border border-border w-full max-w-md mx-4 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 relative">
+        <div className="bg-gradient-to-r from-accent to-accent/80 px-6 py-4 relative">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors duration-200"
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors duration-fast"
           >
             <X className="w-5 h-5" />
           </button>
@@ -80,19 +80,19 @@ export default function LoadingModal({
         <div className="p-8 text-center">
           {/* Animated Loading Icon */}
           <div className="relative mb-6">
-            <div className="w-20 h-20 mx-auto bg-gradient-to-r from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
-              <Loader2 className="w-10 h-10 text-purple-600 animate-spin" />
+            <div className="w-20 h-20 mx-auto bg-gradient-to-r from-accent/20 to-accent/30 rounded-full flex items-center justify-center">
+              <Loader2 className="w-10 h-10 text-accent animate-spin" />
             </div>
             {/* Sparkles Animation */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-pink-500 animate-pulse absolute -top-2 -right-2" />
-              <Sparkles className="w-4 h-4 text-purple-500 animate-pulse absolute -bottom-1 -left-1" />
-              <Sparkles className="w-5 h-5 text-pink-400 animate-pulse absolute top-1 -left-3" />
+              <Sparkles className="w-6 h-6 text-accent animate-pulse absolute -top-2 -right-2" />
+              <Sparkles className="w-4 h-4 text-accent/80 animate-pulse absolute -bottom-1 -left-1" />
+              <Sparkles className="w-5 h-5 text-accent/60 animate-pulse absolute top-1 -left-3" />
             </div>
           </div>
 
           {/* Message */}
-          <p className="text-lg text-gray-700 mb-6 font-medium">
+          <p className="text-lg text-text mb-6 font-medium">
             {message}
             <span className="inline-block w-8 text-left">{dots}</span>
           </p>
@@ -100,13 +100,13 @@ export default function LoadingModal({
           {/* Progress Bar */}
           {progress > 0 && (
             <div className="mb-6">
-              <div className="flex justify-between text-sm text-gray-600 mb-2">
+              <div className="flex justify-between text-sm text-text-muted mb-2">
                 <span>Progress</span>
                 <span>{Math.round(animatedProgress)}%</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div className="w-full bg-surface rounded-full h-2 overflow-hidden">
                 <div 
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 h-full rounded-full transition-all duration-300 ease-out"
+                  className="bg-gradient-to-r from-accent to-accent/80 h-full rounded-full transition-all duration-normal ease-out"
                   style={{ width: `${animatedProgress}%` }}
                 />
               </div>
@@ -114,7 +114,7 @@ export default function LoadingModal({
           )}
 
           {/* Motivational Text */}
-          <div className="text-sm text-gray-500 space-y-1">
+          <div className="text-sm text-text-muted space-y-1">
             <p>✨ Crafting something amazing for you</p>
             <p>🎨 This usually takes 10-30 seconds</p>
           </div>

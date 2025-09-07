@@ -431,14 +431,14 @@ export default function NotesPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl shadow-lg">
+            <div className="p-3 bg-gradient-to-r from-accent to-accent/80 rounded-2xl shadow-card">
               <FileText className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
               Smart Notes
             </h1>
           </div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-text-muted text-lg max-w-2xl mx-auto">
             Create notes with voice-to-text transcription or traditional text input. 
             Organize your thoughts with AI-powered features.
           </p>
@@ -446,13 +446,13 @@ export default function NotesPage() {
 
         {/* Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1 shadow-sm border border-gray-200">
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-1 shadow-subtle border border-border">
             <button
               onClick={() => setActiveTab('create')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
+              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-normal flex items-center gap-2 ${
                 activeTab === 'create'
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
-                  : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                  ? 'bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-card scale-105'
+                  : 'text-text-muted hover:text-accent hover:bg-accent/10'
               }`}
             >
               <Plus className="w-5 h-5" />
@@ -460,16 +460,16 @@ export default function NotesPage() {
             </button>
             <button
               onClick={() => setActiveTab('gallery')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
+              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-normal flex items-center gap-2 ${
                 activeTab === 'gallery'
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
-                  : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                  ? 'bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-card scale-105'
+                  : 'text-text-muted hover:text-accent hover:bg-accent/10'
               }`}
             >
               <BookOpen className="w-5 h-5" />
               My Notes
               {savedNotes.length > 0 && (
-                <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-bold">
+                <span className="bg-accent/20 text-accent px-2 py-1 rounded-full text-xs font-bold">
                   {savedNotes.length}
                 </span>
               )}
@@ -480,8 +480,8 @@ export default function NotesPage() {
         {activeTab === 'create' && (
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Note Type Selection */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 shadow-subtle border border-border">
+              <h3 className="text-lg font-semibold text-text mb-4 flex items-center gap-2">
                 <Edit3 className="w-5 h-5" />
                 Choose Note Type
               </h3>
