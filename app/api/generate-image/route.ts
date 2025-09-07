@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
       n: 1,
     });
 
-    const imageUrl = response.data[0]?.url;
-    const revisedPrompt = response.data[0]?.revised_prompt;
+    const imageUrl = response.data?.[0]?.url;
+    const revisedPrompt = response.data?.[0]?.revised_prompt;
 
     if (!imageUrl) {
       throw new Error('No image URL received from OpenAI');
