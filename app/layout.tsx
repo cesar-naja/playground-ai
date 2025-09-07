@@ -9,7 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
-import { Home, Video, ImageIcon } from "lucide-react";
+import { Home, Video, ImageIcon, FileText } from "lucide-react";
 import { FirebaseProvider } from "@/contexts/FirebaseContext";
 import "./globals.css";
 
@@ -113,6 +113,13 @@ export default function RootLayout({
                       <ImageIcon className="w-4 h-4" />
                       AI Image Generator
                     </Link>
+                    <Link 
+                      href="/notes" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
+                    >
+                      <FileText className="w-4 h-4" />
+                      Notes
+                    </Link>
                   </nav>
                 </div>
 
@@ -170,6 +177,13 @@ export default function RootLayout({
                 >
                   <ImageIcon className="w-4 h-4" />
                   AI Generator
+                </Link>
+                <Link 
+                  href="/notes" 
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm"
+                >
+                  <FileText className="w-4 h-4" />
+                  Notes
                 </Link>
               </div>
             </div>

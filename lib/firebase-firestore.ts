@@ -122,7 +122,7 @@ export const getDocuments = async <T extends FirestoreDocument>(
     operator: WhereFilterOp;
     value: any;
   }[],
-  orderByField?: string,
+  orderByFields?: { field: string; direction: 'asc' | 'desc' }[] | string,
   orderDirection: 'asc' | 'desc' = 'desc',
   limitCount?: number
 ): Promise<T[]> => {
@@ -137,8 +137,16 @@ export const getDocuments = async <T extends FirestoreDocument>(
     }
     
     // Apply ordering
-    if (orderByField) {
-      q = query(q, orderBy(orderByField, orderDirection)) as any;
+    if (orderByFields) {
+      if (typeof orderByFields === 'string') {
+        // Legacy support for single field ordering
+        q = query(q, orderBy(orderByFields, orderDirection)) as any;
+      } else if (Array.isArray(orderByFields)) {
+        // Support for multiple field ordering
+        orderByFields.forEach(orderField => {
+          q = query(q, orderBy(orderField.field, orderField.direction)) as any;
+        });
+      }
     }
     
     // Apply limit
