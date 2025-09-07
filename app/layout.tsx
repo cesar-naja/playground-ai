@@ -43,12 +43,32 @@ export default function RootLayout({
 
   if (!hasClerkKeys) {
     return (
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <meta name="theme-color" content="#0b0f17" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                try {
+                  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark')
+                    document.documentElement.style.colorScheme = 'dark'
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                    document.documentElement.style.colorScheme = 'light'
+                  }
+                } catch (_) {}
+              `,
+            }}
+          />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-bg min-h-screen`}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <ThemeProvider 
+            attribute="class" 
+            defaultTheme="dark" 
+            enableSystem={false}
+            disableTransitionOnChange={false}
+          >
             <div className="min-h-screen flex items-center justify-center p-8">
               <div className="max-w-2xl mx-auto bg-card/80 backdrop-blur-sm rounded-2xl shadow-card border border-border p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-error to-warning rounded-full flex items-center justify-center mx-auto mb-6">
@@ -87,14 +107,34 @@ export default function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <meta name="theme-color" content="#0b0f17" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                try {
+                  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark')
+                    document.documentElement.style.colorScheme = 'dark'
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                    document.documentElement.style.colorScheme = 'light'
+                  }
+                } catch (_) {}
+              `,
+            }}
+          />
         </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-bg min-h-screen`}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeProvider 
+            attribute="class" 
+            defaultTheme="dark" 
+            enableSystem={false}
+            disableTransitionOnChange={false}
+          >
             <header className="bg-surface/80 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-card">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
