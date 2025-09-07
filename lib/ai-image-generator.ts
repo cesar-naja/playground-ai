@@ -1,9 +1,4 @@
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || '',
-  dangerouslyAllowBrowser: true
-});
+// Note: OpenAI calls are now handled server-side for security
 
 export type ImageSize = '1024x1024' | '1792x1024' | '1024x1792';
 export type ImageStyle = 'vivid' | 'natural';
@@ -105,28 +100,47 @@ export const promptSuggestions = [
 // Generate images using DALL-E 3
 export const generateImages = async (request: ImageGenerationRequest): Promise<ImageGenerationResponse> => {
   try {
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: request.prompt,
-      size: request.size,
-      style: request.style,
-      quality: request.quality,
-      n: 1, // DALL-E 3 only supports n=1
+    console.log('Calling server-side image generation API...');
+    
+    const response = await fetch('/api/generate-image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: request.prompt,
+        size: request.size,
+        style: request.style,
+        quality: request.quality,
+      }),
     });
 
-    const images: GeneratedImage[] = (response.data || []).map(image => ({
-      url: image.url || '',
-      revised_prompt: image.revised_prompt
-    }));
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || `HTTP ${response.status}: Failed to generate image`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.success || !data.imageUrl) {
+      throw new Error('Invalid response from image generation API');
+    }
+
+    console.log('Image generated successfully via API');
+    
+    const images: GeneratedImage[] = [{
+      url: data.imageUrl,
+      revised_prompt: data.revisedPrompt
+    }];
 
     return {
       images,
       request,
       timestamp: new Date()
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error generating images:', error);
-    throw new Error('Failed to generate images. Please try again.');
+    throw new Error(error.message || 'Failed to generate images. Please try again.');
   }
 };
 
