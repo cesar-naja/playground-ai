@@ -43,7 +43,7 @@ export default function RootLayout({
 
   if (!hasClerkKeys) {
     return (
-      <html lang="en" className="dark">
+      <html lang="en">
         <head>
           <meta name="theme-color" content="#0b0f17" />
         </head>
@@ -87,7 +87,7 @@ export default function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang="en" className="dark">
+      <html lang="en">
         <head>
           <meta name="theme-color" content="#0b0f17" />
         </head>

@@ -370,8 +370,8 @@ export default function NotesPage() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="flex items-center gap-3 text-gray-600">
+      <div className="min-h-screen bg-bg flex items-center justify-center">
+        <div className="flex items-center gap-3 text-text-muted">
           <Loader2 className="w-6 h-6 animate-spin" />
           <span className="text-lg">Loading...</span>
         </div>
@@ -381,42 +381,42 @@ export default function NotesPage() {
 
   if (!clerkUser) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-card border border-border">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl shadow-lg">
+              <div className="p-3 bg-gradient-to-r from-accent to-accent/80 rounded-2xl shadow-card">
                 <FileText className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
                 Smart Notes
               </h1>
             </div>
             
             <div className="mb-6">
-              <LogIn className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-800 mb-2">Sign In Required</h2>
-              <p className="text-gray-600 mb-6">
+              <LogIn className="w-16 h-16 text-muted mx-auto mb-4" />
+              <h2 className="text-xl font-bold text-text mb-2">Sign In Required</h2>
+              <p className="text-text-muted mb-6">
                 Please sign in to create and manage your notes with voice-to-text transcription and AI-powered features.
               </p>
             </div>
             
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm text-gray-600">
-                <Mic className="w-4 h-4 text-purple-600" />
+              <div className="flex items-center gap-3 text-sm text-text-muted">
+                <Mic className="w-4 h-4 text-accent" />
                 <span>Voice-to-text transcription</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-gray-600">
-                <Languages className="w-4 h-4 text-purple-600" />
+              <div className="flex items-center gap-3 text-sm text-text-muted">
+                <Languages className="w-4 h-4 text-accent" />
                 <span>Multi-language support</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-gray-600">
-                <BookOpen className="w-4 h-4 text-purple-600" />
+              <div className="flex items-center gap-3 text-sm text-text-muted">
+                <BookOpen className="w-4 h-4 text-accent" />
                 <span>Smart organization & search</span>
               </div>
             </div>
             
-            <p className="text-xs text-gray-500 mt-6">
+            <p className="text-xs text-muted mt-6">
               Click "Sign In" in the top navigation to get started
             </p>
           </div>
@@ -426,7 +426,7 @@ export default function NotesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">

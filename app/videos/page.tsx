@@ -61,14 +61,14 @@ export default function VideosPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold text-text mb-4 bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
             Video & Browsing
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-text-muted max-w-2xl mx-auto">
             Discover and explore amazing videos from YouTube with our modern interface
           </p>
         </div>
@@ -77,18 +77,18 @@ export default function VideosPage() {
         <div className="max-w-2xl mx-auto mb-8">
           <form onSubmit={handleSearch} className="relative">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted w-5 h-5" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for videos..."
-                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg shadow-sm bg-white/80 backdrop-blur-sm"
+                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-border focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-fast text-lg shadow-subtle bg-card/80 backdrop-blur-sm text-text placeholder:text-text-muted"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium disabled:opacity-50"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-6 py-2 rounded-xl hover:opacity-90 transition-all duration-fast font-medium disabled:opacity-50"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Search'}
               </button>
@@ -98,13 +98,13 @@ export default function VideosPage() {
 
         {/* Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1 shadow-sm border border-gray-200">
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-1 shadow-subtle border border-border">
             <button
               onClick={loadTrendingVideos}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-fast flex items-center gap-2 ${
                 activeTab === 'trending'
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-card'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
               <TrendingUp className="w-4 h-4" />
@@ -116,7 +116,7 @@ export default function VideosPage() {
         {/* Loading State */}
         {loading && (
           <div className="flex justify-center items-center py-12">
-            <div className="flex items-center gap-3 text-gray-600">
+            <div className="flex items-center gap-3 text-text-muted">
               <Loader2 className="w-6 h-6 animate-spin" />
               <span className="text-lg">Loading amazing videos...</span>
             </div>
@@ -129,7 +129,7 @@ export default function VideosPage() {
             {videos.map((video) => (
               <div
                 key={video.id.videoId}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+                className="bg-card/80 backdrop-blur-sm rounded-2xl shadow-subtle border border-border overflow-hidden hover:shadow-card hover:scale-[1.02] transition-all duration-normal cursor-pointer group"
                 onClick={() => openVideo(video.id.videoId)}
               >
                 {/* Thumbnail */}
@@ -137,27 +137,27 @@ export default function VideosPage() {
                   <img
                     src={video.snippet.thumbnails.medium.url}
                     alt={video.snippet.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-normal"
                   />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/90 rounded-full p-3">
-                      <Play className="w-6 h-6 text-gray-900 fill-current" />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-normal flex items-center justify-center">
+                    <div className="bg-card/90 rounded-full p-3">
+                      <Play className="w-6 h-6 text-text fill-current" />
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+                  <h3 className="font-semibold text-text mb-2 line-clamp-2 group-hover:text-accent transition-colors duration-fast">
                     {truncateText(video.snippet.title, 60)}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                  <div className="flex items-center gap-2 text-sm text-text-muted mb-2">
                     <User className="w-4 h-4" />
                     <span className="truncate">{video.snippet.channelTitle}</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 text-sm text-muted">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(video.snippet.publishedAt)}</span>
                   </div>
@@ -170,10 +170,10 @@ export default function VideosPage() {
         {/* Empty State */}
         {!loading && videos.length === 0 && (
           <div className="text-center py-12">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto shadow-sm border border-gray-200">
-              <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No videos found</h3>
-              <p className="text-gray-600">Try searching for something else or check back later.</p>
+            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto shadow-subtle border border-border">
+              <Search className="w-12 h-12 text-muted mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-text mb-2">No videos found</h3>
+              <p className="text-text-muted">Try searching for something else or check back later.</p>
             </div>
           </div>
         )}
